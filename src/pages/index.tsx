@@ -1,10 +1,11 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import styled from "@xstyled/styled-components";
+import { forwardRef } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const Button = styled.buttonBox`
+const ButtonStyled = styled.buttonBox`
   border-radius: md;
   font-weight: semibold;
   transition: default;
@@ -16,6 +17,19 @@ const Button = styled.buttonBox`
   }
 `;
 
+// This is strange code but let's pretend that we need some additional
+// logic here and styled component is not enough
+export const Button = forwardRef<
+  HTMLButtonElement,
+  React.ComponentProps<typeof ButtonStyled>
+>(({ children, ...props }, ref) => {
+  return (
+    <ButtonStyled ref={ref} {...props}>
+      {children}
+    </ButtonStyled>
+  );
+});
+
 export default function Home() {
   return (
     <>
@@ -26,7 +40,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${inter.className}`}>
-        <Button as="a">123</Button>
+        <Button as="a" href="http://google.com">
+          123
+        </Button>
       </main>
     </>
   );
