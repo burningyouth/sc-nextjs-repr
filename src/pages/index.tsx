@@ -17,12 +17,6 @@ const ButtonStyled = styled.buttonBox`
   }
 `;
 
-// This is strange code but let's pretend that we need some additional
-// logic here and styled component is not enough
-export const Button = ({ children, ...props }: any) => {
-  return <ButtonStyled {...props}>{children}</ButtonStyled>;
-};
-
 export default function Home() {
   return (
     <>
@@ -33,9 +27,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${inter.className}`}>
-        <Button as="a" href="http://google.com">
+        <ButtonStyled as="a" href="http://google.com">
           123
-        </Button>
+        </ButtonStyled>
       </main>
     </>
   );
